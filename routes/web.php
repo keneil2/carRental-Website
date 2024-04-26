@@ -16,3 +16,6 @@ Route::get("/signup",function(){
 
 Route::post("/signup",[SignupController::class,"register"]);
 
+Route::get("/dashboard",function(){
+  return view("dashboard");
+})->name("dashboard");
