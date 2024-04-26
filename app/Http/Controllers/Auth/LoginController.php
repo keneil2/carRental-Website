@@ -19,11 +19,12 @@ class LoginController extends Controller
           "pwd.required"=>"please enter a password",
           "pwd.min"=>"your password is 8 letters long"
         ];
-        $request->validate([
+        $request->validate([ 
             "email"=>["required","string","email","max:255"],
             "pwd"=>["required","string","min:8"],
         ],$message);
          $user=customers::where("email","=",$request->email)->first();
+         
          if($user){
           if(Hash::check($request->pwd,$user->pwd)){
             return back()->with("success","Pwd and Email found");
