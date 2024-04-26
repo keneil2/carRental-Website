@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\customers;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 
@@ -24,10 +24,10 @@ class  SignupController extends Controller
             "Pwd"=>["required","string","min:8"]
         ],$messages);
         $hashedPwd=Hash::make($request->input("Pwd"));
-        $newuser= new customers;
-        $newuser->userName=$request->input("Username");
+        $newuser= new User;
+        $newuser->name=$request->input("Username");
         $newuser->email=$request->input("Email");
-        $newuser->pwd=$hashedPwd;
+        $newuser->password=$hashedPwd;
         $newuser->save();
     }
     //

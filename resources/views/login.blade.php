@@ -21,8 +21,8 @@
         {{Session::get("success")}}
         @endif
       </p>
-        <input type="email" placehoder="please Enter Your Email" name="email" value="{{old("email")}}">
-        <input type="password" placeholder="please Enter your Password" name="pwd" value="{{old("pwd")}}">
+        <input type="text" placehoder="please Enter Your Email" name="email" value="{{old("email")}}">
+        <input type="password" placeholder="please Enter your Password" name="password" value="{{old("password")}}">
         <button>Sign In</button>
     </form>
 </body>
