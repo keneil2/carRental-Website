@@ -12,6 +12,13 @@ class LoginController extends Controller
    public  function showlogin(){
         return view("login");
     }
+    public function Logout(Request $request){
+        Auth::logout();
+        $request->session()->invalidate();
+        $request->session()->regenerateToken();
+        
+        return redirect()->route("login");
+    }
     public function authenticated(Request $request)
     {
         $message=[

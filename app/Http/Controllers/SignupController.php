@@ -8,6 +8,9 @@ use Illuminate\Support\Facades\Hash;
 
 class  SignupController extends Controller
 {
+    public function showForm(){
+        return view("signup");
+    }
     public function register (Request $request)
     {
         $messages=[

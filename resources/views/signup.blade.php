@@ -8,39 +8,37 @@
 </head>
 <body>
    <div class="container">
+
+  
+
+   <div class="signupForm">
+   
+   <form action="" method="POST">
+   <h1>Create an account</h1>
    @if($errors->any())
    <div class="error" >
      <p class="ErrorMessage"> {{$errors->first()}}</p>
    </div>
    @endif
-   <div class="signupForm">
-
- <form action="" method="POST">
-   <h1>Sign Up </h1>
+ 
  @csrf
- <label for="Username">Username</label>   <input type="text" name="Username" placeholder="Enter Your Username"><br>
-  <label for="Email">Email</label>  <input type="Email" name="Email" placeholder="Enter Your Email"><br>
-  <label for="Pwd">Password</label>  <input type="password" name="Pwd" placeholder="Enter Your Username"><br>
+ <label for="Username">Username</label><br>   <input type="text" name="Username" placeholder="Enter Your Username"><br>
+  <label for="Email">Email</label><br>  <input type="Email" name="Email" placeholder="Enter Your Email"><br>
+  <label for="Pwd">Password</label> <br> <input type="password" name="Pwd" placeholder="Enter Your Username"><br>
     <button>Signup up</button>
  </form>
  </div> 
- <div class="booking"> 
-   <div></div>
-   <h2><b>Book a car></b></h2>
-<p>Down the street or across the country, 
-   find the perfect vehicle for your next
-    adventure.</p>
-    <img class="car_key" src="{{asset("images/open-hand.png")}}" >
+ <div class="hero"> 
+   <div>
+    <h2><b>Connecting Talent with Opportunity: Your Path to Success Starts Here</b></h2>
+    <p>
+" 
+Find your dream job, explore new horizons, and take the next step in your professional journey with us. 
+Whether you're a seasoned professional or just starting out, we're here to help you discover, apply, and succeed in the job market. 
+Join us today and let's build your future together!"</p>
+   </div>
 </div>
- <div class="host">
- <img class="car_document" src="{{asset("images/car-key.png")}}" alt="car key">
- <h2><b>Book a car></b></h2>
-<p>Down the street or across the country, 
-   find the perfect vehicle for your next
-    adventure.</p>
- 
- </div>
- </div>
+   
 
 </body>
 </html>
