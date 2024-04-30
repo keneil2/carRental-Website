@@ -11,13 +11,13 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create("Job", function(Blueprint $table){
+        Schema::create("job", function(Blueprint $table){
            $table->string("Title",150);
            $table->text("Description");
            $table->string("Company");
            $table->text("Location");
-           $table->decimal(10,2);
-           $table->enum("jobtype",['full-time', 'part-time', 'contract', 'freelance']);
+           $table->decimal("salary",10,2);
+           $table->enum("jobtypes",['full-time', 'part-time', 'contract', 'freelance']);
            $table->enum('category', [
             'IT',
             'Finance',
@@ -46,7 +46,7 @@ return new class extends Migration
         $table->string("contact_phone");
         $table->date("posted_date");
         $table->text("benefits");
-        $table->boolean("remote_option");
+        $table->boolean("remote_options")->nullable();
         $table->text(" application_instructions");
         $table->string("status");
         $table->string("company_logo")->nullable();
@@ -59,6 +59,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        //
+         Schema::drop("job");
     }
 };

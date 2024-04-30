@@ -89,7 +89,7 @@ input[type="email"]{
     color: white;
     font-size: 1.1rem;
 }
-.hero h2{
+.hero h2,p{
     color:rgb(255, 255, 255);
     margin-bottom:20px;
 }

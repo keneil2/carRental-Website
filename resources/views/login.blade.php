@@ -7,7 +7,7 @@
     <title>Login page</title>
 </head>
 <body>
-<div>
+<div class="loginform">
 @if($errors->any())
    <div class="error" >
      <p class="ErrorMessage"> {{$errors->first()}}</p>
@@ -15,18 +15,26 @@
    @endif
     <form action="{{route("login")}}" method="POST">
     @csrf 
-      <p> @if(Session::has("fail"))
-        {{Session::get("fail")}}
+      <p>
+        @if ($errors->any())
+          {{$errors->first()}}
         @endif
-
-        @if(Session::has("success"))
-        {{Session::get("success")}}
-        @endif
-      </p>
-        <input type="text" placehoder="please Enter Your Email" name="email" value="{{old("email")}}">
-        <input type="password" placeholder="please Enter your Password" name="password" value="{{old("password")}}">
+</p>
+      <label for="email">Email</label><br>
+        <input type="text" placeholder="please Enter Your Email" name="email" value="{{old("email")}}"><br>
+        <label for="password">Password</label>
+        <input type="password" placeholder="please Enter your Password" name="password" value="{{old("password")}}"><br>
         <button>Sign In</button>
     </form>
     </div>
+    <div class="hero"> 
+   <div>
+    <h2><b>Connecting Talent with Opportunity: Your Path to Success Starts Here</b></h2>
+    <p>
+"Find your dream job, explore new horizons, and take the next step in your professional journey with us. 
+Whether you're a seasoned professional or just starting out, we're here to help you discover, apply, and succeed in the job market. 
+Join us today and let's build your future together!"</p>
+   </div>
+  </div>
 </body>
 </html>

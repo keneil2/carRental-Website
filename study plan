@@ -5,5 +5,6 @@ review code and learn how to redirect to another page #done
 TO DO
 review what you learned about athentication and guards and so on #done
 work on logout functionality #done 
-redesign the sign up and login page 
-and start working on the users admin section of the webpage basically cms for people hosting jobs 
+redesign the sign up #done and login page 
+ start working on the users admin section of the webpage basically cms for people hosting jobs #done
+ make an admin table and add some admins and start working on auth for login try to read up and understand more about it kl ?

@@ -11,12 +11,9 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create("admins",function(Blueprint $table){
-            $table->string("username");
-            $table->string("Pwd");
-            $table->timestamp("created_at")->useCurrent();
-        });
-        //
+        Schema::table("admins",function(Blueprint $table){
+            $table->renameColumn("created_at","updated_at");
+          });
     }
 
     /**
@@ -24,6 +21,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-      
+        //
     }
 };
