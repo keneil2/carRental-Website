@@ -1,23 +1,26 @@
 <?php
 
 namespace App\Http\Middleware;
-use Illuminate\Support\Facades\Auth;
+
 use Closure;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
-
-class Authenticate
+use Illuminate\Support\Facades\Session;
+class AuthMiddleware
 {
+
     /**
      * Handle an incoming request.
-     *
      * @param  \Closure(\Illuminate\Http\Request): (\Symfony\Component\HttpFoundation\Response)  $next
      */
     public function handle(Request $request, Closure $next): Response
     {
-        if(Auth::check()){
-            return $next($request);
-    }
-    return redirect("/adminLogin");
+        return $next($request);
+        // if(Session::has("user_id")){
+        //     return $next($request);
+        // }else{
+        //     return redirect("adminLogin");
+        // }
+       
     }
 }

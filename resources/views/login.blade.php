@@ -8,22 +8,30 @@
 </head>
 <body>
 <div class="loginform">
-@if($errors->any())
+ @if($errors->any())
    <div class="error" >
      <p class="ErrorMessage"> {{$errors->first()}}</p>
    </div>
-   @endif
+   @endif 
+
+
     <form action="{{route("login")}}" method="POST">
     @csrf 
-      <p>
+<!--      
         @if ($errors->any())
-          {{$errors->first()}}
-        @endif
-</p>
+        <p>  {{$errors->first()}}</p>
+        @endif -->
+
+        @if (session()->has("fail"))
+        
+            <p class="ErrorMessage">{{session()->get("fail")}}</p>
+         @endif
+
       <label for="email">Email</label><br>
         <input type="text" placeholder="please Enter Your Email" name="email" value="{{old("email")}}"><br>
         <label for="password">Password</label>
         <input type="password" placeholder="please Enter your Password" name="password" value="{{old("password")}}"><br>
+        <p>admin?<a href="/adminLogin"> click here</a></p>
         <button>Sign In</button>
     </form>
     </div>

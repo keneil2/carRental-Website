@@ -1,0 +1,26 @@
+*{
+    margin:0px;
+    padding:0px;
+    box-sizing:border-box;
+}
+nav{
+    display: flex;
+    background-color: antiquewhite;
+    padding:5px;
+    align-items: center;
+    justify-content: space-between;
+    height:40px;
+}
+ul li{
+display: inline;
+}
+.nav-right{
+    display: inline;
+   
+}
+.nav-right a{
+    margin-right:40px;
+    background-color: blueviolet;
+    padding:5px;
+    border-radius:5px;
+}

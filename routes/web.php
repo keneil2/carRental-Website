@@ -1,40 +1,50 @@
 <?php
 
-use App\Http\Controllers\SignupController;
+use App\Http\Controllers\UsersController;
+use App\Http\Middleware\AuthMiddleware;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\Auth\LoginController;
-use App\Http\Controllers\adminSignupController;
+// use App\Http\Controllers\Auth\LoginController;
+use App\Http\Controllers\adminsController;
 
 Route::get('/', function () {
-    return view('welcome');
+  return view('welcome');
 });
 
 
 
-Route::get("/signup",[SignupController::class,"showForm"])->name("Signup");
+Route::get("/signup", [UsersController::class, "showForm"])->name("Signup");
 
 
 
- Route::get("/login",[LoginController::class,"showlogin"]);
+Route::get("/login", [UsersController::class, "showlogin"])->name("login");
 
 
 
- Route::post("/login",[LoginController::class,"authenticated"])->name("login");
+Route::post("/login", [UsersController::class, "authenticated"]);
 
 
 
-Route::post("/signup",[SignupController::class,"register"]);
+Route::post("/signup", [UsersController::class, "register"]);
+
+Route::get("/home",function(){
+  return view("home");
+});
 
 
 
-Route::get("/dashboard",function(){
+// ->middleware("auth");
+
+
+Route::post("/logout", [UsersController::class, "Logout"])->name("logout");
+
+
+Route::get("/adminSignup", [adminsController::class, "show"]);
+Route::post("/adminSignup", [adminsController::class, "CreateAccount"]);
+
+Route::get("/adminLogin", [adminsController::class, "showloginForm"])->name("adminLogin");
+Route::post("/adminLogin", [adminsController::class, "LoginAdmin"]);
+
+Route::get("/dashboard", function () {
   return view("dashboard");
 })->name("dashboard")->middleware("auth");
-
-
-Route::post("/logout",[LoginController::class,"Logout"])->name("logout");
-
-
-Route::get("/adminSignup",[adminSignupController::class,"show"]);
-Route::post("/adminSignup",[adminSignupController::class,"CreateAccount"]);
 

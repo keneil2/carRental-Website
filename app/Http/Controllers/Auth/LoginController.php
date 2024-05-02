@@ -27,11 +27,11 @@ class LoginController extends Controller
           "password.required"=>"please enter a password",
           "password.min"=>"your password is 8 letters long"
         ];
+
        $credentials= $request->validate([ 
             "email"=>["required","string","email","max:255"],
             "password"=>["required","string","min:8"],
         ],$message);
-        // dd($credentials);
         if(Auth::attempt($credentials)){
               $request->session()->regenerate();
               return redirect()->intended("dashboard");
