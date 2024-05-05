@@ -16,35 +16,41 @@ Route::get("/signup", [UsersController::class, "showForm"])->name("Signup");
 
 
 
-Route::get("/login", [UsersController::class, "showlogin"])->name("login");
+Route::get("/login", [UsersController::class, "showlogin"]);
 
 
 
-Route::post("/login", [UsersController::class, "authenticated"]);
+Route::post("/login", [UsersController::class, "authenticated"])->name("userlogin");
 
 
 
 Route::post("/signup", [UsersController::class, "register"]);
 
-Route::get("/home",function(){
+Route::get("/home", function () {
   return view("home");
-});
+})->middleware("AuthUsers");
 
 
 
 // ->middleware("auth");
 
 
-Route::post("/logout", [UsersController::class, "Logout"])->name("logout");
+Route::post("/logout", [adminsController::class, "logoutUser"])->name("logout");
 
 
 Route::get("/adminSignup", [adminsController::class, "show"]);
+
 Route::post("/adminSignup", [adminsController::class, "CreateAccount"]);
 
 Route::get("/adminLogin", [adminsController::class, "showloginForm"])->name("adminLogin");
+
 Route::post("/adminLogin", [adminsController::class, "LoginAdmin"]);
 
 Route::get("/dashboard", function () {
   return view("dashboard");
-})->name("dashboard")->middleware("auth");
+})->name("dashboard")->middleware("AuthUsers");
 
+
+Route::post("/Emailverification", [adminsController::class, "EmailVarified"])->name("Emailvar.post");
+
+Route::get("/Emailverification/{username?}", [adminsController::class,"showemailvarPage"])->name("Emailvar.get");

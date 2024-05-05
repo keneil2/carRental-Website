@@ -18,6 +18,6 @@ class Authenticate
         if(Auth::check()){
             return $next($request);
     }
-    return redirect("/adminLogin");
+    return redirect('/adminLogin');
     }
 }

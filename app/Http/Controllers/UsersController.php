@@ -69,7 +69,7 @@ class UsersController extends Controller
 
             if (Hash::check($request->input("password"), $users->password)) {
 
-                session()->put("user_id", $users->id);
+                session()->put("userId", $users->id);
                 return redirect()->intended("/home");
 
             }
@@ -80,12 +80,12 @@ class UsersController extends Controller
 
     }
     public function logoutUser(Request $request){
-        if(session()->has("user_id")){
-             session()->pull("user_id");
+        if(session()->has("userId")){
+             session()->pull("userId");
         }
 
         $request->session()->invalidate();
        $request->session()->regenerateToken();
-       return redirect("/");
+       return redirect("/login");
     }
 }

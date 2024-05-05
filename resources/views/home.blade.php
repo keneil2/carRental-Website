@@ -8,5 +8,8 @@
 <body>
     @include("layouts.nav")
     <h1>HOME PAGE</h1>
+    @if (session()->has("userId"))
+        {{session()->get("userId")}}
+    @endif
 </body>
 </html>
