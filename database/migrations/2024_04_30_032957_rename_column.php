@@ -11,9 +11,9 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::table("admins",function(Blueprint $table){
-            $table->renameColumn("created_at","updated_at");
-          });
+        // Schema::table("admins",function(Blueprint $table){
+        //     $table->renameColumn("created_at","updated_at");
+        //   });
     }
 
     /**

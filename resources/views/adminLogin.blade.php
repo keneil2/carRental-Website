@@ -12,7 +12,7 @@
     @if (session()->has("fail"))
           {{session()->get("fail")}}
     @endif
-     <form action="{{route("adminLogin")}}" method="POST">
+     <form action="{{route("admin.login.post")}}" method="POST">
      @csrf
     <input type="text" placeholder="please Enter Username" name="username">
     <input type="password" name="password" placeholder="please Enter Password">

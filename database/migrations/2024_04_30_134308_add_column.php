@@ -11,9 +11,9 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::table("admins",function($table){
-         $table->timestamp("created_at")->useCurrent();
-        });
+        // Schema::table("admins",function($table){
+        //  $table->timestamp("created_at")->useCurrent();
+        // })php artisan migrate;
     }
 
     /**

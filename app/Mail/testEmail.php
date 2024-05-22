@@ -15,9 +15,12 @@ class testEmail extends Mailable
     private $varificationCode;
 
     use Queueable, SerializesModels;
+
     public function build(){
         return $this->subject('Test Email')->view('emails.EmailVar');
     }
+
+    
     /**
      * Create a new message instance.
      */

@@ -15,7 +15,6 @@
 <input type="text" name="code" placeholder="Please enter var code">
 <button type="submit">send code</button>
 @if(session()->has("username"))
-
     {{session()->get("username")}}
     {{session()->get("varCode")}}
 @endif

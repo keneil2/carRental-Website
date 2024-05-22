@@ -5,6 +5,7 @@ use App\Http\Middleware\AuthMiddleware;
 use Illuminate\Support\Facades\Route;
 // use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\adminsController;
+use App\Http\Controllers\AdminsLogin;
 
 Route::get('/', function () {
   return view('welcome');
@@ -38,19 +39,19 @@ Route::get("/home", function () {
 Route::post("/logout", [adminsController::class, "logoutUser"])->name("logout");
 
 
-Route::get("/adminSignup", [adminsController::class, "show"]);
+Route::get("/admin/signup", [adminsController::class, "show"]);
 
-Route::post("/adminSignup", [adminsController::class, "CreateAccount"]);
+Route::post("/admin/signup", [adminsController::class, "CreateAccount"]);
 
-Route::get("/adminLogin", [adminsController::class, "showloginForm"])->name("adminLogin");
+Route::get("/admin/login", [AdminsLogin::class, "showloginForm"])->name("admin.login.get");
 
-Route::post("/adminLogin", [adminsController::class, "LoginAdmin"]);
+Route::post("/admin/login", [AdminsLogin::class, "loginAdmin"])->name("admin.login.post");
 
 Route::get("/dashboard", function () {
   return view("dashboard");
 })->name("dashboard")->middleware("AuthUsers");
 
 
-Route::post("/Emailverification", [adminsController::class, "EmailVarified"])->name("Emailvar.post");
+Route::post("/Emailverification", [adminsController::class, "verifyEmail"])->name("Emailvar.post");
 
 Route::get("/Emailverification/{username?}", [adminsController::class,"showemailvarPage"])->name("Emailvar.get");
