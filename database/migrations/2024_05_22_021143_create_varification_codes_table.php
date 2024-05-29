@@ -11,8 +11,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::table('customers', function (Blueprint $table) {
-            $table->renameColumn('added_at', 'created_at');
+        Schema::create('Emial_codes', function (Blueprint $table) {
+            $table->id();
+            $table->string("email")->unique();
+            $table->string("code");
+            $table->timestamp("expires_at");
+            $table->timestamps();
         });
     }
 
@@ -21,9 +25,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::table('customers', function (Blueprint $table) {
-            $table->renameColumn('created_at',"added_at");
-        });   
-        //
+        Schema::dropIfExists('varification_codes');
     }
 };

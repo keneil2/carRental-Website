@@ -99,12 +99,7 @@ class adminsController extends Controller
 
  
 
-  private function VarCode()
-  {
-    $code = mt_rand(10000000, 1000000000);
-    session()->put("varCode", $code);
-  }
-
+ 
   public function logoutUser(Request $request)
   {
     if (session()->has("admin_id")) {

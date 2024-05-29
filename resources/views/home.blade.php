@@ -3,13 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Home</title>
+    <title>{{env("App Name")}}</title>
 </head>
 <body>
-    @include("layouts.nav")
+  <x-navbar/>
     <h1>HOME PAGE</h1>
     @if (session()->has("userId"))
         {{session()->get("userId")}}
     @endif
+
+    
 </body>
 </html>

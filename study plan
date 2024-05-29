@@ -15,4 +15,18 @@ redesign the sign up #done and login page #done
  the middle ware is acting weird I think it is bacause the I initailly set it up to redirect to the login page and it was supposed to handle request from that page hint start with chatgpt kl.
  #fixed the problem was that the laravel expects the dbname to be password and the name I had was pwd there were some other issue but I dont remember.
  next I need to implement an email in the input field and an column  also password resetting  
- add a email field in the signup part and add a 
+ 
+ may 20, 2024 
+ left this project for a while as you can see I need to revisted and try to understand 
+ my thought process in this project thing  is i have learn alot more so seeing this code there are parts I would like to refactor 
+ but first lets figure out how I sent emails 
+ and what the right way to do start refactor the registration part of the web.
+update:  SO I kind of refactor the code lol but I got around to understanding how the Mail thing works so thats good 
+
+ may 21, 2024
+ here is the thing I need you to change or figure out how to structure the varcode table to store email and the users address as well kl # done 
+ fix authentications for routes;
+ fix routes and group them in middleware and route names and so on before doing anything try to fix those
+   TO-DO
+ finish the design for the landing page and fix admin page?
+ # set a time for the button like disable the resend button again look up how emails are sent and the register events okay? 

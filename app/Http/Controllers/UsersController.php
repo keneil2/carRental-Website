@@ -2,9 +2,15 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Customers;
 use App\Models\User;
+use Illuminate\Auth\Events\Registered;
+use Illuminate\Foundation\Auth\EmailVerificationRequest;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\VarificationEmail;
 
 class UsersController extends Controller
 {
@@ -12,6 +18,36 @@ class UsersController extends Controller
     {
         return view("signup");
     }
+    public function verifyNotice(){
+       return view("Emailvar");
+    } 
+
+    public function verifyEmail(EmailVerificationRequest $request){
+    $request->fulfill();
+    return route("dashboard");
+    }
+    public function sendEmailVarification(Request $request){
+        session()->flash("user",$request->user());
+        $user=$request->user();
+    $user->sendEmailVerificationNotification();
+    }
+    public function ResendEmail(){
+   
+       $user=Auth::guard("customers")->user();
+       if($user->hasverifyEmail()){
+    return redirect()->route("dashboard");
+       }
+        $user->sendEmailVerificationNotification();
+
+    }
+
+    private function VarCode()
+    {
+      $code = mt_rand(10000000, 1000000000);
+      return $code; 
+    }
+
+  
     public function register(Request $request)
     {
         $messages = [
@@ -22,17 +58,32 @@ class UsersController extends Controller
             "Username.regex" => "username mus be letter and numbers only",
             "email" => "invalid email address",
         ];
-        $request->validate([
-            "Username" => ["required", "string", "max:50", "regex:/^[a-zA-Z]+[0-9]*$/"],
-            "Email" => ["required", "email", "max:255"],
+        
+
+
+
+        $user=$request->validate([
+            "Username" => ["required", "string", "max:50", "regex:/^[a-zA-Z]+[0-9]*$/","unique:customers,name"],
+            "Email" => ["required", "email", "max:255","unique:customers,email"],
             "Pwd" => ["required", "string", "min:8"]
         ], $messages);
+
+       // saved user 
         $hashedPwd = Hash::make($request->input("Pwd"));
-        $newuser = new User;
-        $newuser->name = $request->input("Username");
-        $newuser->email = $request->input("Email");
-        $newuser->password = $hashedPwd;
-        $newuser->save();
+        $newuser = Customers::create([
+            "name"=>$request->Username,
+            "email"=>$request->Email,
+            "password"=>$hashedPwd,
+            "role_id"=>1
+        ]);
+        
+        // Authenticate the user
+       Auth::guard("customers")->login($newuser,$remember=true);
+   
+        event(new Registered($newuser));
+        
+       
+       return  redirect()->route("verification.notice");
     }
     public function showlogin()
     {
@@ -63,11 +114,11 @@ class UsersController extends Controller
             "password" => ["required", "string", "min:8"],
         ], $message);
 
-        $users = User::where("email", "=", $request->input("email"))->first();
+        $users = Customers::where("email", "=", $request->input("email"))->first();
         // dd($users);
         if ($users) {
 
-            if (Hash::check($request->input("password"), $users->password)) {
+            if (Auth::guard("customers")->attempt( $credentials)) {
 
                 session()->put("userId", $users->id);
                 return redirect()->intended("/home");
@@ -79,6 +130,7 @@ class UsersController extends Controller
         return back()->with("fail", "incorrect username or Password");
 
     }
+
     public function logoutUser(Request $request){
         if(session()->has("userId")){
              session()->pull("userId");

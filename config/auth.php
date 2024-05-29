@@ -41,9 +41,9 @@ return [
             'driver' => 'session',
             'provider' => 'users',
         ],
-        "admins"=>[
+        "customers"=>[
             "driver"=>"session",
-            "provider"=>"admins",
+            "provider"=>"customers",
         ],
     ],
 
@@ -69,9 +69,9 @@ return [
             'driver' => 'eloquent',
             'model' => env('AUTH_MODEL', App\Models\User::class),
         ], 
-        "admins"=>[
+        "customers"=>[
             "driver"=>"eloquent",
-            "model"=>env("AUTH_MODEL",App\Models\admins::class),
+            "model"=>env("AUTH_MODEL",App\Models\Customers::class),
 
         ]
 
@@ -108,6 +108,13 @@ return [
             'expire' => 60,
             'throttle' => 60,
         ],
+        'customers' => [
+            'provider' => 'customers',
+            'table' => env('AUTH_PASSWORD_RESET_TOKEN_TABLE', 'password_reset_tokens'),
+            'expire' => 60,
+            'throttle' => 60,
+        ],
+
     ],
 
     /*

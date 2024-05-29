@@ -37,7 +37,7 @@ class AdminsLogin extends Controller
         
   
   
-      if (Auth::guard("admins")->attempt(request()->only(["username", "password"]))) {
+      if (Auth::guard("admins")->attempt(request(["username", "password"]))) {
   
         $request->session()->regenerate();
         $this->isEmailVerified($credentials["username"]);

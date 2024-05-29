@@ -15,9 +15,9 @@ class Authenticate
      */
     public function handle(Request $request, Closure $next): Response
     {
-        if(Auth::check()){
+        if(Auth::guard("customers")->check()){
             return $next($request);
     }
-    return redirect('/adminLogin');
+     return abort(403);
     }
 }

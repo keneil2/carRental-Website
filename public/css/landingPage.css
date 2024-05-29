@@ -1,0 +1,47 @@
+*{
+    margin: 0px;
+    padding:0px;
+    box-sizing: border-box;
+}
+nav{
+    z-index: 1;
+    background-color:transparent;
+}
+section{
+    /* z-index: 0; */
+    background-color:skyblue;
+    height:100vh;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  position: relative;
+}
+
+.img{
+    background-color: rgb(58, 58, 237);
+    width: 300px;
+    height: 100%;
+}
+.img img{
+    position: absolute;
+    right:80px;
+    bottom:1px;
+    width:700px;
+    height:700px;
+    object-fit: cover;
+}
+
+.hook{
+    margin-left: 100px;
+    
+    width: 500px;
+}
+.hook h2{
+   
+    font-size: 3.5rem;
+}
+.hook input{
+    width: 400px;
+    height: 50px;
+}

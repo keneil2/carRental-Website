@@ -19,7 +19,7 @@ class AuthMiddleware
         if(Session::has("admin_id")){
             return $next($request);
         }else{
-            return redirect("/adminLogin");
+            return abort(403);
         }
         
        

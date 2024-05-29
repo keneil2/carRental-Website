@@ -16,15 +16,15 @@
    <form action="" method="POST">
    <h1>Create an account</h1>
    @if($errors->any())
-   <div class="error" >
+   <div class="error">
      <p class="ErrorMessage"> {{$errors->first()}}</p>
    </div>
    @endif
  
  @csrf
- <label for="Username">Username</label><br>   <input type="text" name="Username" placeholder="Enter Your Username"><br>
-  <label for="Email">Email</label><br>  <input type="Email" name="Email" placeholder="Enter Your Email"><br>
-  <label for="Pwd">Password</label> <br> <input type="password" name="Pwd" placeholder="Enter Your Username"><br>
+ <label for="Username">Username</label><br>   <input type="text" name="Username" placeholder="Enter Your Username" value="{{old("Username")}}"><br>
+  <label for="Email">Email</label><br>  <input type="Email" name="Email" placeholder="Enter Your Email" value="{{old("Emial")}}"><br>
+  <label for="Pwd">Password</label> <br> <input type="password" name="Pwd" placeholder="Enter Your Username" value="{{old("Pwd")}}"><br>
   <p>want to host jobs?<a href="/adminSignup"> signup here</a></p>
     <button>Signup up</button>
  </form>
