@@ -44,7 +44,7 @@ class adminsController extends Controller
     ]);
 
 
-    $this->VarCode();
+   
     $this->sendEmail(session()->get("VarCode"));
 
 
