@@ -46,7 +46,7 @@ class adminsController extends Controller
 
    
     $this->sendEmail(session()->get("VarCode"));
-   ///
+   ///\
 
     $pass = Hash::make($request->input("password"));
 
